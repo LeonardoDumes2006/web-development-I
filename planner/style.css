@@ -1,8 +1,3 @@
-* {
-    box-sizing: border-box;
-    font-family: sans-serif;
-}
-
 body {
     background-color: #f9f9f9;
     margin: 0;
@@ -28,59 +23,45 @@ h1 {
 .planner-container {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    border: 3px solid black; 
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    background-color: white;
+}
+
+.planner-week-day, .planner-day {
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
     background-color: white;
 }
 
 .planner-week-day {
-    border-bottom: 2px solid black;
-    border-right: 2px solid black;
     text-align: center;
     font-weight: bold;
     padding: 10px 0;
     background-color: #eee;
 }
 
-.planner-week-day:last-child {
-    border-right: none;
-}
-
 .planner-day {
-    border-bottom: 2px solid black;
-    border-right: 2px solid black;
     height: 120px;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
-}
-
-.planner-day:nth-child(7n) {
-    border-right: none;
-}
-
-.planner-day:nth-last-child(-n+7) {
-    border-bottom: none;
+    overflow-y: auto; 
 }
 
 .planner-day .day {
-    position: sticky;
-    top: 0;
-    background-color: white;
     text-align: right;
     padding: 5px;
     font-weight: bold;
-    border-bottom: 1px solid #ccc;
 }
 
 .todo-list {
     margin: 0;
-    padding: 5px 10px;
-    list-style-type: square;
+    padding: 5px 15px;
     font-size: 0.85rem;
 }
 
 .notes-section {
-    border: 3px solid black;
+    border: 2px solid black;
     background-color: white;
     padding: 20px;
     display: flex;
@@ -91,83 +72,47 @@ h1 {
     text-align: center;
     margin-top: 0;
     margin-bottom: 20px;
-    font-size: 1.2rem;
-}
-
-.notes-section {
-    border: 3px solid black;
-    background-color: white;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.notes-title {
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 1.2rem;
     font-weight: bold;
+    font-size: 1.2rem;
 }
 
-.notes-textarea {
+notes-textarea {
     width: 100%;
-    flex-grow: 1; 
-    resize: none; 
-    border: 1px dashed #ccc; 
-    outline: none; 
+    margin: 0; 
+    box-sizing: border-box; 
+    flex-grow: 1;
+    resize: none;
     font-size: 1rem;
-    padding: 10px;
-    background-color: transparent;
-    line-height: 1.5; 
-}
-
-.notes-textarea:focus {
-    border-color: black; 
+    outline: none;
+    background-color: #fafafa;
+    border: 1px solid black; 
 }
 
 .bottom-section {
-    grid-column: 1 / -1; 
-    border: 3px solid black;
+    grid-column: 1 / -1;
+    border: 2px solid black;
     background-color: white;
     padding: 20px;
-    min-height: 150px;
 }
 
-.bottom-section h2 {
-    margin: 0;
-    font-size: 1.2rem;
-    font-weight: normal;
-}
 .bottom-section h2 {
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 1.2rem;
-    font-weight: bold; 
+    font-weight: bold;
 }
 
 .main-tasks {
-    list-style: none; 
+    list-style: none;
     padding: 0;
     margin: 0;
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 15px; 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 20px;
 }
 
 .main-tasks li {
     display: flex;
     align-items: center;
     font-size: 1rem;
-}
-
-.main-tasks input[type="checkbox"] {
-    margin-right: 10px;
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-}
-
-.main-tasks label {
-    cursor: pointer; 
 }
