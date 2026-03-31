@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script lang="javascript" type="text/javascript">
+        // Leia a idade e diga se pode votar, não votar e opicional
+        idade = prompt("Digite sua idade:", "sua idade");
+
+        if(idade < 16) {
+            document.writeln("Não pode votar");
+        } else if (idade >= 16 && idade < 18 || idade > 70) {
+            document.writeln("Voto opcional");
+        } else {
+            document.writeln("Pode votar");
+        }
+
+    </script>
+
+
+</body>
+</html>

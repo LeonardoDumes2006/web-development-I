@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script lang="javascript" type="text/javascript"> 
+    // var nome = "Mundo";
+    // var idade = 14;
+    // var endereco = "Rua dos Bobos, nº 0";
+    // var cep = "00000-000";
+    // var cpf = "000.000.000-00";
+
+        document.writeln("<h1>Olá Mundo!</h1>");
+
+        document.write("<form>");
+            document.write("<label for='nome'>Nome:</label>");
+            document.write("<input type='text' id='nome' name='nome'>");
+            document.write("<br><br>");
+            document.write("<label for='idade'>Idade:</label>");
+            document.write("<input type='number' id='idade' name='idade'>");
+            document.write("<br><br>");
+            document.write("<label for='endereco'>Endereço:</label>");
+            document.write("<input type='text' id='endereco' name='endereco'>");
+            document.write("<br><br>"); 
+            document.write("<label for='cep'>CEP:</label>");
+            document.write("<input type='text' id='cep' name='cep'>");
+            document.write("<br><br>");
+            document.write("<label for='cpf'>CPF:</label>");
+            document.write("<input type='text' id='cpf' name='cpf'>");
+            document.write("<input type='submit' value='Enviar'>");
+        document.write("</form>");
+
+        nome = prompt("Digite seu nome:", "seu nome");
+        idade = prompt("Digite sua idade:", "sua idade");
+        endereco = prompt("Digite seu endereço:", "seu endereço");
+        cep = prompt("Digite seu CEP:", "seu CEP"); 
+        cpf = prompt("Digite seu CPF:", "seu CPF");
+
+        idade < 18
+            ? alert("Não pode jogar roblox")
+            : document.writeln("<p>Você pode jogar roblox</p>");
+
+    </script>
+</body>
+</html>
