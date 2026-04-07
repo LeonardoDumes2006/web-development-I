@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- como fazer a divisão do baralho para quatro jogadores? 
+     leia a posição e informe o jogador correspondente; -->
+     <script lang="javascript" type="text/javascript">
+            posicao = prompt("Digite a posição do jogador:", "0");
+            
+            jogador = posicao % 4;
+            document.writeln("Posição do jogador: " + posicao + "<br>");
+            switch (jogador) {
+                case 1:
+                    document.writeln("Jogador 1");
+                    break;
+                case 2:
+                    document.writeln("Jogador 2");
+                    break;
+                case 3:
+                    document.writeln("Jogador 3");
+                    break;
+                case 0:
+                    document.writeln("Jogador 4");
+                    break;
+                default:
+                    document.writeln("Número inválido. Por favor, digite um número entre 1 e 52.");
+            }    
+            
+    </script>
+</body>
+</html>
