@@ -1,25 +1,148 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <title>Formulário de Funcionário</title>
+
+    <script>
+        let funcionarios = [];
+
+        function processarFormulario(event) {
+            // Evita o recarregamento da página
+            event.preventDefault();
+
+            // 1. Capturar os dados do formulário
+            let nome = document.getElementById("nome").value;
+            let data = document.getElementById("data").value;
+            let sexo = document.getElementById("sexo").value;
+            let cpf = document.getElementById("cpf").value;
+            let rg = document.getElementById("rg").value;
+            let tituloEleitoral = document.getElementById("tituloEleitoral").value;
+            let cep = document.getElementById("cep").value;
+            let rua = document.getElementById("rua").value;
+            let numero = document.getElementById("numero").value;
+            let bairro = document.getElementById("bairro").value;
+            let cidade = document.getElementById("cidade").value;
+            let estado = document.getElementById("estado").value;
+            let telResidencial = document.getElementById("telResidencial").value;
+            let telCelular = document.getElementById("telCelular").value;
+            let instagram = document.getElementById("instagram").value;
+            let facebook = document.getElementById("facebook").value;
+
+            let numFilhos = parseInt(document.getElementById("numFilhos").value) || 0;
+            let salarioBase = parseFloat(document.getElementById("salario").value) || 0;
+
+            let valeAlimentacao = 400.00; 
+
+            
+            let filhosParaCalculo = numFilhos > 3 ? 3 : numFilhos;
+            let salarioFamilia = 100.00 * filhosParaCalculo;
+            
+            
+            let inss = salarioBase * 0.20;
+            
+            let salarioTotal = salarioBase + valeAlimentacao + salarioFamilia;
+            
+            
+            let descontosTotais = inss;
+
+            let funcionario = {
+                nome, data, sexo, cpf, rg, tituloEleitoral, cep, rua, numero, 
+                bairro, cidade, estado, telResidencial, telCelular, instagram, facebook, 
+                numFilhos, salarioBase, valeAlimentacao, salarioFamilia, inss, 
+                salarioTotal, descontosTotais
+            };
+
+            funcionarios.push(funcionario);
+
+            document.querySelector("form").reset();
+            repintarTabela();
+        }
+
+        function repintarTabela() {
+            let containerTabela = document.getElementById("tabela-container");
+
+            if (funcionarios.length === 0) return;
+
+            let salarios = funcionarios.map(f => f.salarioBase);
+            let maiorSalario = Math.max(...salarios);
+            let menorSalario = Math.min(...salarios);
+
+            let html = `
+                <div class='table-responsive mt-4'>
+                    <table class='table table-bordered text-center align-middle'>
+                        <thead class='table-dark text-nowrap'>
+                            <tr>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>Filhos</th>
+                                <th>Salário Base</th>
+                                <th>Vale Alim.</th>
+                                <th>Sal. Família</th>
+                                <th>INSS</th>
+                                <th>Descontos</th>
+                                <th>Salário Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+
+            for (let i = 0; i < funcionarios.length; i++) {
+                let f = funcionarios[i];
+                let classeCor = "";
+
+                if (funcionarios.length > 1 && maiorSalario !== menorSalario) {
+                    if (f.salarioBase === maiorSalario) {
+                        classeCor = "table-danger"; 
+                    } else if (f.salarioBase === menorSalario) {
+                        classeCor = "table-warning";
+                    }
+                }
+
+                html += `
+                    <tr class="${classeCor} text-nowrap">
+                        <td>${f.nome}</td>
+                        <td>${f.cpf}</td>
+                        <td>${f.numFilhos}</td>
+                        <td>R$ ${f.salarioBase.toFixed(2)}</td>
+                        <td>R$ ${f.valeAlimentacao.toFixed(2)}</td>
+                        <td>R$ ${f.salarioFamilia.toFixed(2)}</td>
+                        <td class="text-danger">R$ ${f.inss.toFixed(2)}</td>
+                        <td class="text-danger">R$ ${f.descontosTotais.toFixed(2)}</td>
+                        <td class="fw-bold text-success">R$ ${f.salarioTotal.toFixed(2)}</td>
+                    </tr>
+                `;
+            }
+
+            html += `
+                        </tbody>
+                    </table>
+                </div>
+            `;
+
+            containerTabela.innerHTML = html;
+        }
+    </script>
 </head>
+
 <body>
     <div class="container mt-4 mb-5">
-        
+
         <div class="row">
             <div class="col text-center">
                 <h4 class="mb-4">Formulário de Funcionário</h4>
             </div>
         </div>
-            
-        <form>
+
+        <form onsubmit="processarFormulario(event)">
             <div class="row mb-3">
                 <div class="col-8">
                     <label for="nome" class="form-label">Nome Completo</label>
-                    <input type="text" class="form-control" id="nome">
+                    <input type="text" class="form-control" id="nome" required>
                 </div>
                 <div class="col-4">
                     <label for="data" class="form-label">Data de Nascimento</label>
@@ -103,11 +226,11 @@
             <div class="row mb-3">
                 <div class="col-4">
                     <label for="numFilhos" class="form-label">Número de Filhos</label>
-                    <input type="number" class="form-control" id="numFilhos" min="0">
+                    <input type="number" class="form-control" id="numFilhos" min="0" required>
                 </div>
                 <div class="col-8">
-                    <label for="salario" class="form-label">Salário</label>
-                    <input type="number" class="form-control" id="salario" step="0.01" min="0">
+                    <label for="salario" class="form-label">Salário Base</label>
+                    <input type="number" class="form-control" id="salario" step="0.01" min="0" required>
                 </div>
             </div>
 
@@ -118,7 +241,18 @@
             </div>
         </form>
 
+        <hr class="mt-5 mb-4">
+        
+        <div id="tabela-container">
+            <h3>Tabela de Funcionários</h3>
+            <p class="text-muted">Nenhum funcionário cadastrado ainda.</p>
+        </div>
+
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous">
+    </script>
 </body>
+
 </html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function processarFormulario() {
+            var nome = "";
+            var telefone = "";
+            var endereco = "";
+
+            var saida = null;
+
+
+            nome = document.getElementById("nome").value;
+            telefone = document.getElementById("telefone").value;
+            endereco = document.getElementById("endereco").value;
+
+            saida = document.getElementById("saida");
+
+            saida.innerHTML += "<ul><li>Nome: " + nome + "</li><li>Telefone: " + telefone + "</li><li>Endereço: " + endereco + "</li></ul>";
+        }
+    </script>
+</head>
+<body>
+    <span id="saida">
+        <h1>Saída de Dados</h1>
+        <p>Neste span serão escritos os resultados do processamento do JS</p>
+    </span>
+    <form action="">
+        <label for="">Nome
+            <input type="text" name="nome" id="nome">
+        </label>
+        <label for="">
+            <input type="text" name="telefone" id="telefone">
+        </label>
+        <label for="">
+            <input type="text" name="endereco" id="endereco">
+        </label>
+        <button onclick="processarFormulario(); return false;">Salvar</button>
+    </form>
+</body>
+</html>

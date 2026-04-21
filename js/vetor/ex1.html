@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Descrição:
+    leia 10 idades e guarde em um vetor. Ao final, mostre como lista não ordenada;
+    mostre a lista anterior de modo ordenado crescente;
+    idem, de modo ordenado decrescente;
+    usando uma fila, leia dados de cinco funcionários e mostre em uma tabela. Dados a serem lidos <id, nome, salário, idade>;
+    usando os dados do exercício anterior, mostre o nome do funcionário mais novo e a idade do funcionário que tem o maior salário.
+    Obs: fazer utilizando array; -->
+
+</head>
+<body>
+    <script lang="javascript" type="text/javascript">
+        var vetor = new Array(10);
+        for(var i =0; i < vetor.length; i++){
+            vetor[i] = prompt("Digite um número: ", "0");
+        }
+        document.writeln("Vetor: " + vetor);
+
+        function ordenarCrescente(vetor){
+            return vetor.sort((a, b) => a - b);
+        }
+        document.writeln("<br>");
+        var ordenadoCrescente = ordenarCrescente(vetor);
+        document.writeln("Vetor ordenado crescente: " + ordenadoCrescente);
+
+        function ordenarDecrescente(vetor){
+            return vetor.sort((a, b) => b - a);
+        }
+        document.writeln("<br>");
+        var ordenadoDecrescente = ordenarDecrescente(vetor);
+        document.writeln("Vetor ordenado decrescente: " + ordenadoDecrescente);
+
+    </script>
+
+
+</body>
+</html>
